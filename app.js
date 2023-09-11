@@ -4,10 +4,10 @@ const app = express()
 const Twitter = require('twitter')
 
 const twitterConfig = {
-    consumer_key: '',
-    consumer_secret: '',
-    access_token_key: '',
-    access_token_secret: ''
+    consumer_key: 'OgoVTVbdMb7vkaR6wSebpIgtW',
+    consumer_secret: 'J7DTf9E2TYLuua4W6DFYzsZ2RouBfkUC1p36xCgZ7K3WEZOgVV',
+    access_token_key: '1680823888069132291-TFgEXNEsFNPDyGYJGagYPJooYHi4Qv',
+    access_token_secret: 'IyVT0F8tkxRKUQmkBp0VMk3KQ64hhWtFD9mpi4NqAnxSE'
 }
 
 const twitterClient = new Twitter(twitterConfig)
@@ -23,6 +23,22 @@ app.post('/tweet', async (req, res) => {
         } else {
             console.error(error); // Changed from console.log to console.error for error messages
             res.status(500).json({ error: "Failed to send the tweet" });
+        }
+    });
+});
+
+// Add a new route to get a tweet by its ID
+app.get('/tweet/:tweetId', async (req, res) => {
+    const tweetId = req.params.tweetId;
+
+    // Use the Twitter API to get the tweet by its ID
+    twitterClient.get('/statuses/show', { id: tweetId }, (error, tweet) => {
+        if (!error) {
+            console.log(tweet);
+            res.status(200).json({ tweet });
+        } else {
+            console.error(error);
+            res.status(500).json({ error: "Failed to retrieve the tweet" });
         }
     });
 });
