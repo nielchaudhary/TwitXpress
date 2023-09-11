@@ -4,10 +4,10 @@ const app = express()
 const Twitter = require('twitter')
 
 const twitterConfig = {
-    consumer_key: 'OgoVTVbdMb7vkaR6wSebpIgtW',
-    consumer_secret: 'J7DTf9E2TYLuua4W6DFYzsZ2RouBfkUC1p36xCgZ7K3WEZOgVV',
-    access_token_key: '1680823888069132291-TFgEXNEsFNPDyGYJGagYPJooYHi4Qv',
-    access_token_secret: 'IyVT0F8tkxRKUQmkBp0VMk3KQ64hhWtFD9mpi4NqAnxSE'
+    consumer_key: 'OgoVTVbdMb7vkaR6wSebpIgtW', //ADD YOUR CONSUMER KEY 
+    consumer_secret: 'J7DTf9E2TYLuua4W6DFYzsZ2RouBfkUC1p36xCgZ7K3WEZOgVV', //ADD YOUR CONSUMER SECRET
+    access_token_key: '1680823888069132291-TFgEXNEsFNPDyGYJGagYPJooYHi4Qv', //ADD YOUR ACCESS TOKEN
+    access_token_secret: 'IyVT0F8tkxRKUQmkBp0VMk3KQ64hhWtFD9mpi4NqAnxSE'  // ADD YOUR ACCESS SECRET
 }
 
 const twitterClient = new Twitter(twitterConfig)
