@@ -43,6 +43,62 @@ app.get('/tweet/:tweetId', async (req, res) => {
     });
 });
 
+// Add a new route to get a user's tweets by their username
+app.get('/user-tweets/:username', async (req, res) => {
+    const username = req.params.username;
+
+    // Use the Twitter API to get a user's tweets by their username
+    twitterClient.get('/statuses/user_timeline', { screen_name: username, count: 10 }, (error, tweets) => {
+        if (!error) {
+            console.log(tweets);
+            res.status(200).json({ tweets });
+        } else {
+            console.error(error);
+            res.status(500).json({ error: "Failed to retrieve user's tweets" });
+        }
+    });
+});
+
+// Add a new route to search for tweets based on a query
+app.get('/search-tweets/:query', async (req, res) => {
+    const query = req.params.query;
+
+    // Use the Twitter API to search for tweets
+    twitterClient.get('/search/tweets', { q: query, count: 10 }, (error, tweets) => {
+        if (!error) {
+            console.log(tweets);
+            res.status(200).json({ tweets });
+        } else {
+            console.error(error);
+            res.status(500).json({ error: "Failed to search for tweets" });
+        }
+    });
+});
+
+// Add a new route to get user information by their Twitter username
+app.get('/user-info/:username', async (req, res) => {
+    const username = req.params.username;
+
+    // Use the Twitter API to get user information by username
+    twitterClient.get('/users/show', { screen_name: username }, (error, user) => {
+        if (!error) {
+            console.log(user);
+            res.status(200).json({ user });
+        } else {
+            console.error(error);
+            res.status(500).json({ error: "Failed to retrieve user information" });
+        }
+    });
+});
+
+
+
+app.listen(3000, () => {
+    console.log("This server is running on port 3000");
+});
+
+
+
 app.listen(3000, () => {
     console.log("This server is running on port 3000");
 });
